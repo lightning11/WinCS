@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginControl", "LoginControl\LoginControl.csproj", "{93103223-880B-45DF-92D2-018A369E2D15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm", "LoginForm\LoginForm.csproj", "{C903B336-9491-4A2A-8549-A4B5339C5055}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93103223-880B-45DF-92D2-018A369E2D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93103223-880B-45DF-92D2-018A369E2D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93103223-880B-45DF-92D2-018A369E2D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93103223-880B-45DF-92D2-018A369E2D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C903B336-9491-4A2A-8549-A4B5339C5055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C903B336-9491-4A2A-8549-A4B5339C5055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C903B336-9491-4A2A-8549-A4B5339C5055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C903B336-9491-4A2A-8549-A4B5339C5055}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
