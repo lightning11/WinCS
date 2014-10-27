@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBConnect;
 
 namespace LoginControl
 {
@@ -16,9 +17,13 @@ namespace LoginControl
         public event EventHandler LoginNG;
         public event EventHandler LoginCancel;
 
+        private DBConnect.DBConnect  m_DB;
+
         public Login()
         {
             InitializeComponent();
+
+            m_DB = new DBConnect.DBConnect();
         }
 
         protected virtual void OnLoginOK()
@@ -49,7 +54,10 @@ namespace LoginControl
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if ((txtUserName.Text == "test") && (txtPassword.Text == "test"))
+
+            bool result = m_DB.Authenticate(txtUserName.Text, txtPassword.Text);
+
+            if (result)
             {
                 OnLoginOK();
             }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginControl", "LoginContro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm", "LoginForm\LoginForm.csproj", "{C903B336-9491-4A2A-8549-A4B5339C5055}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBConnect", "DBConnect\DBConnect.csproj", "{63EA6075-CC53-4361-BBAA-6E2D976AADE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C903B336-9491-4A2A-8549-A4B5339C5055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C903B336-9491-4A2A-8549-A4B5339C5055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C903B336-9491-4A2A-8549-A4B5339C5055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63EA6075-CC53-4361-BBAA-6E2D976AADE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63EA6075-CC53-4361-BBAA-6E2D976AADE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63EA6075-CC53-4361-BBAA-6E2D976AADE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63EA6075-CC53-4361-BBAA-6E2D976AADE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
