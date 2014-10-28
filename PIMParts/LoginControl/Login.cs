@@ -11,9 +11,11 @@ using DBConnect;
 
 namespace LoginControl
 {
+    public delegate void LoginOKEventHandler(object sender, LoginOKEventArgs e);
+
     public partial class Login : UserControl
     {
-        public event EventHandler LoginOK;
+        public event LoginOKEventHandler LoginOK;
         public event EventHandler LoginNG;
         public event EventHandler LoginCancel;
 
@@ -26,11 +28,11 @@ namespace LoginControl
             m_DB = new DBConnect.DBConnect();
         }
 
-        protected virtual void OnLoginOK()
+        protected virtual void OnLoginOK(LoginOKEventArgs e)
         {
             if (LoginOK != null)
             {
-                LoginOK(this, null);
+                LoginOK(this, e);
             }
         }
 
@@ -59,7 +61,9 @@ namespace LoginControl
 
             if (result)
             {
-                OnLoginOK();
+                LoginOKEventArgs le = new LoginOKEventArgs(txtUserName.Text, m_DB.DisplayName);
+
+                OnLoginOK(le);
             }
             else
             {
@@ -72,6 +76,10 @@ namespace LoginControl
             OnLoginCancel();
         }
 
+        public DBConnect.DBConnect conDB
+        {
+            get { return m_DB; }
+        }
 
     }
 }

@@ -37,7 +37,7 @@
             this.ucLogin.Name = "ucLogin";
             this.ucLogin.Size = new System.Drawing.Size(323, 212);
             this.ucLogin.TabIndex = 0;
-            this.ucLogin.LoginOK += new System.EventHandler(this.ucLogin_LoginOK);
+            this.ucLogin.LoginOK += new LoginControl.LoginOKEventHandler(this.ucLogin_LoginOK);
             this.ucLogin.LoginNG += new System.EventHandler(this.ucLogin_LoginNG);
             this.ucLogin.LoginCancel += new System.EventHandler(this.ucLogin_LoginCancel);
             // 

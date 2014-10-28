@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LoginControl;
 
 namespace LoginForm
 {
@@ -17,10 +18,10 @@ namespace LoginForm
             InitializeComponent();
         }
 
-        private void ucLogin_LoginOK(object sender, EventArgs e)
-        {
-            MessageBox.Show("ログイン成功", "ログイン");
-        }
+        //private void ucLogin_LoginOK(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("ログイン成功", "ログイン");
+        //}
 
         private void ucLogin_LoginNG(object sender, EventArgs e)
         {
@@ -32,7 +33,10 @@ namespace LoginForm
             MessageBox.Show("ログインキャンセル", "ログイン");
         }
 
-
+        private void ucLogin_LoginOK(object sender, LoginOKEventArgs e)
+        {
+            MessageBox.Show("ようこそ！ " + e.DisplayName + " さん", "ログイン");
+        }
 
 
 

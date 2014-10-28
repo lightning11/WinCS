@@ -37,10 +37,20 @@ namespace DBConnect
                 //データ取得
                 da.Fill(dt);
 
-                DataRow row = dt.Rows[0];
+                if (dt.Rows.Count > 0 ) 
+                {
+                    DataRow row = dt.Rows[0];
 
-                m_userId = System.Convert.ToInt32(row["UserId"]);
-                m_displayName = (string)row["DisplayName"];
+                    m_userId = System.Convert.ToInt32(row["UserId"]);
+                    m_displayName = (string)row["DisplayName"];
+                    
+                }
+                else
+                {
+                    m_userId = 0;
+                    m_displayName = "";
+                    return false;
+                }
 
             }
              catch
