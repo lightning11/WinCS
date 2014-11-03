@@ -15,8 +15,11 @@ namespace DataAccessObject.ConnectBase
 
     public class DaoParameter
     {
+        // パラメータ名（バインド変数名）
         public string paramName { get; set; }
+        // パラメータ型
         public DaoParameterDataType paramType { get; set; }
+        // パラメータ値
         public object paramValue { get; set; }
     }
 }

@@ -10,12 +10,30 @@ namespace DataAccessObject.ConnectBase
 {
     class MySQLConnector : IDaoConnector
     {
-        private const string connectionString = "userid=prometheus5481;password=ew873PQM43rw;database=hyperion;Host=localhost;Charset=utf8;";
+
+        #region "定数・変数"
+
+        // 接続文字列
+        private string conString = null;
 
         // 接続情報
-        MySqlConnection conn = null;
+        private MySqlConnection conn = null;
         // トランザクション情報
-        MySqlTransaction trans = null;
+        private MySqlTransaction trans = null;
+
+        #endregion
+
+        #region "コンストラクタ"
+
+        // ----------------------------------------------------
+        // コンストラクタ
+        // ----------------------------------------------------
+        public MySQLConnector(string connectionString)
+        {
+            conString = connectionString;
+        }
+
+        #endregion
 
         #region "データベース基本処理"
 
@@ -24,7 +42,7 @@ namespace DataAccessObject.ConnectBase
         // ----------------------------------------------------
         public void DBOpen()
         {
-            conn = new MySqlConnection(connectionString);
+            conn = new MySqlConnection(conString);
             if (conn != null)
             {
                 conn.Open();
@@ -83,12 +101,11 @@ namespace DataAccessObject.ConnectBase
         public DataTable dataFill(string strSQL)
         {
             List<DaoParameter> dummy = new List<DaoParameter>();
-
             return dataFill(strSQL, dummy);
         }
-
         public DataTable dataFill(string strSQL, List<DaoParameter> sqlParams)
         {
+            // データテーブル（返却値）
             DataTable result = new DataTable();
 
             // データアダプター
@@ -110,7 +127,6 @@ namespace DataAccessObject.ConnectBase
             //データ取得
             dataAdp.Fill(result);
 
-
             return result;
         }
 
@@ -120,7 +136,6 @@ namespace DataAccessObject.ConnectBase
         public int executeQuery(string strSQL)
         {
              List<DaoParameter> dummy = new  List<DaoParameter>();
-
              return executeQuery(strSQL, dummy);
         }
 
@@ -153,11 +168,13 @@ namespace DataAccessObject.ConnectBase
         // ----------------------------------------------------
         private MySqlParameter makeParameter(DaoParameter sqlParam)
         {
-
+            // パラメータ作成
             MySqlParameter param = new MySqlParameter();
 
+            // パラメータ名（バインド変数名）
             param.ParameterName = sqlParam.paramName;
 
+            // パラメータ型
             switch(sqlParam.paramType ) {
                 case DaoParameterDataType.typeString:
                     param.MySqlDbType = MySqlDbType.String;
@@ -168,8 +185,12 @@ namespace DataAccessObject.ConnectBase
                 case DaoParameterDataType.typeDecimal:
                     param.MySqlDbType = MySqlDbType.Decimal;
                     break;
+                default:
+                    param.MySqlDbType = MySqlDbType.String;
+                    break;
             }
 
+            // パラメータ値
             param.Value = sqlParam.paramValue;
 
             return param;
@@ -177,7 +198,6 @@ namespace DataAccessObject.ConnectBase
         }
 
         #endregion
-
 
     }
 }

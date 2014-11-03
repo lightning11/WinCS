@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace DataAccessObject.ConnectBase
 {
@@ -10,7 +11,10 @@ namespace DataAccessObject.ConnectBase
     {
         public IDaoConnector create()
         {
-            IDaoConnector dao = new MySQLConnector();
+
+            string conString = ConfigurationManager.AppSettings["MySQLConnectionString"];
+
+            IDaoConnector dao = new MySQLConnector(conString);
 
             return dao;
         }

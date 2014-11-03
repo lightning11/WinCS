@@ -16,6 +16,9 @@ namespace DataAccessObject.Dao
 
         private string strInsert = "Insert Into UserList (UserId, Account, Password, DisplayName) value (?userId, ?account, ?password, ?displayName)";
 
+        // ----------------------------------------------------
+        // 検索処理
+        // ----------------------------------------------------
         public DataTable selectAllUserList()
         {
             // トランザクション開始
@@ -40,6 +43,9 @@ namespace DataAccessObject.Dao
             return list;
         }
 
+        // ----------------------------------------------------
+        // 追加処理
+        // ----------------------------------------------------
         public int insertUserList(DDaoUserList insData)
         {
 
@@ -80,8 +86,6 @@ namespace DataAccessObject.Dao
 
             return cnt;
         }
-
-
 
 
 

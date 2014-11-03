@@ -9,6 +9,8 @@ namespace DataAccessObject.ConnectBase
 {
     interface IDaoConnector
     {
+        #region "データベース基本処理"
+
         // DBを開く
         void DBOpen();
 
@@ -24,6 +26,10 @@ namespace DataAccessObject.ConnectBase
         // トランザクションロールバック
         void rollback();
 
+        #endregion
+
+        #region "データベース操作処理"
+
         // データを取得
         DataTable dataFill(string strSQL);
         DataTable dataFill(string strSQL, List<DaoParameter> sqlParams);
@@ -32,6 +38,7 @@ namespace DataAccessObject.ConnectBase
         int executeQuery(string strSQL);
         int executeQuery(string strSQL, List<DaoParameter> sqlParams);
 
+        #endregion
 
     }
 }

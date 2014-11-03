@@ -9,8 +9,12 @@ namespace DataAccessObject.ConnectBase
 {
     public class DaoBase : IDisposable
     {
+        #region "定数・変数"
+
         // データ接続情報
         IDaoConnector dbCon = null;
+
+        #endregion
 
         #region "データベース基本処理"
 
