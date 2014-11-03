@@ -14,7 +14,9 @@ namespace DataAccessObject.ConnectBase
 
         #region "データベース基本処理"
 
+        // --------------------------------------------------
         // データベースを開く
+        // --------------------------------------------------
         protected void DBOpen()
         {
             DaoConnectorFactory dbFactory = new DaoConnectorFactory();
@@ -25,7 +27,9 @@ namespace DataAccessObject.ConnectBase
 
         }
 
+        // --------------------------------------------------
         // データベースを閉じる
+        // --------------------------------------------------
         protected void DBClose()
         {
             if (dbCon != null)
@@ -34,7 +38,9 @@ namespace DataAccessObject.ConnectBase
             }
         }
 
+        // --------------------------------------------------
         // トランザクション開始
+        // --------------------------------------------------
         protected void beginTrans()
         {
             if (dbCon != null)
@@ -43,7 +49,9 @@ namespace DataAccessObject.ConnectBase
             }            
         }
 
+        // --------------------------------------------------
         // トランザクションコミット
+        // --------------------------------------------------
         protected void commit()
         {
             if (dbCon != null)
@@ -52,7 +60,9 @@ namespace DataAccessObject.ConnectBase
             }
         }
 
+        // --------------------------------------------------
         // トランザクションロールバック
+        // --------------------------------------------------
         protected void rollback()
         {
             if (dbCon != null)
@@ -63,17 +73,34 @@ namespace DataAccessObject.ConnectBase
 
         #endregion
 
+        #region "データベース操作処理"
 
+        // --------------------------------------------------
+        // 検索実行
+        // --------------------------------------------------
         protected DataTable dataFill(string strSQL)
         {
             return dbCon.dataFill(strSQL);
         }
-
         protected DataTable dataFill(string strSQL, List<DaoParameter> sqlParams)
         {
             return dbCon.dataFill(strSQL, sqlParams);
         }
 
+        // --------------------------------------------------
+        // クエリー実行
+        // --------------------------------------------------
+        protected int executeQuery(string strSQL)
+        {
+            return dbCon.executeQuery(strSQL);
+        }
+
+        protected int executeQuery(string strSQL, List<DaoParameter> sqlParams)
+        {
+            return dbCon.executeQuery(strSQL, sqlParams);
+        }
+
+        #endregion
 
         #region "コンストラクタ"
 

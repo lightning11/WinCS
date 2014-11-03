@@ -28,5 +28,10 @@ namespace DataAccessObject.ConnectBase
         DataTable dataFill(string strSQL);
         DataTable dataFill(string strSQL, List<DaoParameter> sqlParams);
 
+        // クエリーを実行
+        int executeQuery(string strSQL);
+        int executeQuery(string strSQL, List<DaoParameter> sqlParams);
+
+
     }
 }

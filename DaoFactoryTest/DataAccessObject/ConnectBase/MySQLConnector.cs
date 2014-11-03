@@ -17,7 +17,11 @@ namespace DataAccessObject.ConnectBase
         // トランザクション情報
         MySqlTransaction trans = null;
 
+        #region "データベース基本処理"
+
+        // ----------------------------------------------------
         // DBを開く
+        // ----------------------------------------------------
         public void DBOpen()
         {
             conn = new MySqlConnection(connectionString);
@@ -27,7 +31,9 @@ namespace DataAccessObject.ConnectBase
             }
         }
 
+        // ----------------------------------------------------
         // DBを閉じる
+        // ----------------------------------------------------
         public void DBClose()
         {
             // DBを閉じる
@@ -38,7 +44,9 @@ namespace DataAccessObject.ConnectBase
             }
         }
 
+        // ----------------------------------------------------
         // トランザクション開始
+        // ----------------------------------------------------
         public void beginTrans()
         {
             if (conn != null)
@@ -47,39 +55,36 @@ namespace DataAccessObject.ConnectBase
             }
         }
 
+        // ----------------------------------------------------
         // トランザクションコミット
+        // ----------------------------------------------------
         public void commit()
         {
             trans.Commit();
             trans = null;
         }
 
+        // ----------------------------------------------------
         // トランザクションロールバック
+        // ----------------------------------------------------
         public void rollback()
         {
             trans.Rollback();
             trans = null;
         }
 
+        #endregion
 
+        #region "データベース操作処理"
+
+        // ----------------------------------------------------
+        // データ検索
+        // ----------------------------------------------------
         public DataTable dataFill(string strSQL)
         {
-            DataTable result = new DataTable();
+            List<DaoParameter> dummy = new List<DaoParameter>();
 
-            // データアダプター
-            MySqlDataAdapter dataAdp = new MySqlDataAdapter(strSQL, conn);
-
-            // トランザクション設定
-            if (trans != null)
-            {
-                dataAdp.SelectCommand.Transaction = trans;
-            }
-
-            //データ取得
-            dataAdp.Fill(result);
-
-
-            return result;
+            return dataFill(strSQL, dummy);
         }
 
         public DataTable dataFill(string strSQL, List<DaoParameter> sqlParams)
@@ -98,22 +103,7 @@ namespace DataAccessObject.ConnectBase
             // パラメータ追加
             foreach( DaoParameter param in sqlParams)
             {
-                MySqlParameter addParam = new MySqlParameter();
-
-                addParam.ParameterName = param.paramName;
-                switch(param.paramType ) {
-                    case DaoParameterDataType.typeString:
-                        addParam.MySqlDbType = MySqlDbType.String;
-                        break;
-                    case DaoParameterDataType.typeDate :
-                        addParam.MySqlDbType = MySqlDbType.Date;
-                        break;
-                    case DaoParameterDataType.typeDecimal:
-                        addParam.MySqlDbType = MySqlDbType.Decimal;
-                        break;
-                }
-                addParam.Value = param.paramValue;
-
+                MySqlParameter addParam = makeParameter(param);
                 dataAdp.SelectCommand.Parameters.Add(addParam);
             }
 
@@ -123,6 +113,71 @@ namespace DataAccessObject.ConnectBase
 
             return result;
         }
+
+        // ----------------------------------------------------
+        // クエリー実行
+        // ----------------------------------------------------
+        public int executeQuery(string strSQL)
+        {
+             List<DaoParameter> dummy = new  List<DaoParameter>();
+
+             return executeQuery(strSQL, dummy);
+        }
+
+        public int executeQuery(string strSQL, List<DaoParameter> sqlParams)
+        {
+            // データアダプター
+            MySqlCommand sqlCommand = new MySqlCommand(strSQL, conn);
+
+            // トランザクション設定
+            if (trans != null)
+            {
+                sqlCommand.Transaction = trans;
+            }
+
+            // パラメータ追加
+            foreach (DaoParameter param in sqlParams)
+            {
+                MySqlParameter addParam = makeParameter(param);
+                sqlCommand.Parameters.Add(addParam);
+            }
+
+            //データ取得
+            int cnt = sqlCommand.ExecuteNonQuery();
+
+            return cnt;
+        }
+
+        // ----------------------------------------------------
+        // パラメータ作成
+        // ----------------------------------------------------
+        private MySqlParameter makeParameter(DaoParameter sqlParam)
+        {
+
+            MySqlParameter param = new MySqlParameter();
+
+            param.ParameterName = sqlParam.paramName;
+
+            switch(sqlParam.paramType ) {
+                case DaoParameterDataType.typeString:
+                    param.MySqlDbType = MySqlDbType.String;
+                    break;
+                case DaoParameterDataType.typeDate :
+                    param.MySqlDbType = MySqlDbType.Date;
+                    break;
+                case DaoParameterDataType.typeDecimal:
+                    param.MySqlDbType = MySqlDbType.Decimal;
+                    break;
+            }
+
+            param.Value = sqlParam.paramValue;
+
+            return param;
+
+        }
+
+        #endregion
+
 
     }
 }

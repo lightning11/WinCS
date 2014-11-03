@@ -43,5 +43,33 @@ namespace DaoFactoryTest
 
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (DaoUserList test = new DaoUserList())
+                {
+                    DDaoUserList insData = new DDaoUserList();
+
+                    insData.userId = 30;
+                    insData.account = "addtest";
+                    insData.password = "test";
+                    insData.displayName = "追加太郎";
+
+                    int cnt = test.insertUserList(insData);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ログイン");
+            }
+            finally
+            {
+
+            }
+
+        }
     }
 }
