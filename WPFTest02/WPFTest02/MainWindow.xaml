@@ -1,0 +1,19 @@
+﻿<Window x:Class="WPFTest02.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Closing="Window_Closing"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <SolidColorBrush x:Key="bg" Color="Red" />
+    </Window.Resources>
+    <WrapPanel>
+        <Button Click="TestClicked">テスト</Button>
+        <Button Click="Button_Click" Background="{StaticResource bg}">テスト２</Button>
+        <Button Click="Button_Click_1">List</Button>
+        <TextBox x:Name="_test1">編集可能なテキストボックス</TextBox>
+        <CheckBox Content="{Binding ElementName=_test1,Path=Text}"></CheckBox>
+        <Grid>
+            <DataGrid Name="dataGrid" IsReadOnly="True"></DataGrid>
+        </Grid>
+    </WrapPanel>
+</Window>
